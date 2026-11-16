@@ -1,0 +1,5 @@
+RollNo,Name,Maths,Physics,Programming,Total,percentage,Grade,Result
+101,Anita,85,90,80,255,85.0,A,PASS
+102,Rahul,40,45,50,135,45.0,E,PASS
+103,Suman,35,70,60,165,55.00000000000001,D,FAIL
+104,Vikas,100,100,100,300,100.0,A+,PASS
