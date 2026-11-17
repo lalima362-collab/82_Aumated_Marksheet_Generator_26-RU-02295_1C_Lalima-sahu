@@ -6,21 +6,15 @@ try:
 
     print("Student Data:")
     print(df)
-
-    # Check required columns
     required_columns = ["RollNo", "Name", "Maths", "Physics", "Programming"]
 
     for column in required_columns:
         if column not in df.columns:
             raise ValueError(f"Missing column: {column}")
-
-    # Convert marks into numeric values
     mark_columns = ["Maths", "Physics", "Programming"]
 
     for column in mark_columns:
         df[column] = pd.to_numeric(df[column], errors="coerce")
-
-    # Check valid student records
     valid_rows = (
         df["RollNo"].notna()
         & df["Name"].notna()
@@ -36,12 +30,9 @@ try:
             print(f"warning: Row for roll {int(row['RollNo'])} skipped - marks must be between 0 and 100.")
 
     df = df[valid_rows].copy()
-
-    # Calculate total and percentage
     df["Total"] = df[mark_columns].sum(axis=1)
     df["percentage"] = ((df["Total"] / 300) * 100).round(2)
 
-    # Calculate grade
     def calculate_grade(percentage):
         if percentage >= 90:
             return "A+"
@@ -59,8 +50,6 @@ try:
             return "F"
 
     df["Grade"] = df["percentage"].apply(calculate_grade)
-
-    # Calculate pass or fail
     def calculate_result(row):
         if (
             row["Maths"] < 40
